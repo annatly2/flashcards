@@ -1,12 +1,29 @@
 var Card = require("./card.js");
 
-function Deck(){
+var Deck = function(){
+	this.cards = [];
 
-//planets
+	this.addCards = function(f,b){
+		this.cards.push(new Card(f,b));
+	};
 
-//candy
+	this.cardCount = function(){
+		return this.cards.length;
+	}
 
-}
+	this.runPlanetsDeck = function(){
+	console.log("You chose the Planets deck!");
+	//display questions with for loop
+	}
+
+	this.runCandyDeck = function(){
+	console.log("You chose the Candy deck!");
+	//display questions with for loop
+	}
+
+
+};
+
 
 //organize cards into decks
 

@@ -1,12 +1,20 @@
 var Deck = require("./deck.js");
 
-function Card(question,answer){
+var Card = function(question,answer, deck){
 	this.question = question;
 	this.answer = answer;
+	this.deck = deck;
 }
 
 
 
-var q1 = new Card("The Great Red Spot is a gigantic storm located on which planet in our solar system?", "Jupiter");
+var p1 = new Card("What planet is nicknamed the ‘Red Planet’?", "Mars", "planet");
+var p2 = new Card("What is the smallest planet in the Solar System?", "Mercury", "planet");
+var p3 = new Card ("What is the brightest planet in the night sky?", "Venus", "planet");
+var p4 = new Card ("The sixth planet from the Sun features an extensive ring system, what is the name of this planet?", "Saturn", "planet");
+var p5 = new Card ("What is the largest planet in the Solar System?", "Jupiter", "planet");
+
+
+
 
 module.exports = Card;
