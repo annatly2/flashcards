@@ -7,30 +7,31 @@ var Card = function(question, answer, deck){
 
 	this.planetCards = [{
 		question: "What is the smallest planet in the Solar System?",
-		answer: "Mercury",
+		answer: "mercury"
 	},{
 		question: "What is the brightest planet in the night sky?",
-		answer: "Venus",
+		answer: "venus"
 	},{
 		question: "The sixth planet from the Sun features an extensive ring system, what is the name of this planet?",
-		answer: "Saturn",
+		answer: "saturn"
 	},{
 		question: "What is the largest planet in the Solar System?",
-		answer: "Jupiter"
-	}]
+		answer: "jupiter"
+	}];
 
-	this.candyCards =[];
+	this.candyCards =[{
+		question: "What candy bar was named after its inventor's family horse?",
+		answer: "snickers"
+	},{
+		question: "What candy bar was invented by the Curtiss Candy Company of Chicago in 1923?",
+		answer: "butterfinger"
+	},{
+		question: "This popular treat contains a coconut base and is coated in dark chocolate. Which Hershey's candy is this?",
+		answer: "mounds"
+	},{
+		question: "Hershey’s calls these 'licorice candy', but most of these do not have licorice as the main ingredient. What candy is this?",
+		answer: "twizzlers"
+	}];
+
 }
-
-
-
-var p1 = new Card("What planet is nicknamed the ‘Red Planet’?", "Mars", "planet");
-var p2 = new Card("What is the smallest planet in the Solar System?", "Mercury", "planet");
-var p3 = new Card ("What is the brightest planet in the night sky?", "Venus", "planet");
-var p4 = new Card ("The sixth planet from the Sun features an extensive ring system, what is the name of this planet?", "Saturn", "planet");
-var p5 = new Card ("What is the largest planet in the Solar System?", "Jupiter", "planet");
-
-
-
-
 module.exports = Card;

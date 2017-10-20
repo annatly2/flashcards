@@ -2,6 +2,9 @@ var inquirer = require("inquirer");
 var Deck = require("./deck.js");
 var Card = require("./card.js");
 
+var cardIndex = 0;
+
+//Initiates Command Line Interface Constructor
 var CliController = function(){
 	inquirer.prompt([
 	{
@@ -12,17 +15,19 @@ var CliController = function(){
 	}])
 	.then(function(inquirerResponse){
 		if(inquirerResponse.deckchoice === "Planets Deck"){
-			var p1Card = new Card("What planet is nicknamed the ‘Red Planet’?", "Mars", "planet");
-			var p1Deck = new Deck(p1Card)
-			p1Deck.runPlanetsDeck();
+			var firstPCard = new Card("question", "answer", "planet");
+			console.log(firstPCard.planetCards[cardIndex].question);
 			fourPrompts();
+
 		}else{
+			var firstCCard = new Card ("question", "answer", "candy");
+			console.log(firstCCard.candyCards[cardIndex].question);
 			//run candy deck
 			fourPrompts();
 		}
 	});
 
-
+//Function for the four different prompts
 	this.fourPrompts = function(){
 		inquirer.prompt([
 			{
@@ -35,33 +40,84 @@ var CliController = function(){
 		.then(function(answer){
 			switch(answer.action){
 				case "Answer the question":
-					//allow user to type in an answer
+					answerQuestion();
 					break;
+
 				case "Flip to see the answer":
-					//show answer
+					flipToAnswer();
 					break;
+
 				case "Skip this card to the next":
-					//show the next question
+					nextPQuestion();
 					break;
+
 				case "Exit the game":
-					//exit and end the game
+					exitGame();
 					break;
 			}
 		})
 	};
 
 
+//how do I get this to work for both planets & candy? Right now only works for planets
+
+	this.answerQuestion = function(){
+		inquirer.prompt([
+			{
+				name: "userInput",
+				message: "Type your answer.",
+				type: "input"
+			}]).then(function(answer){
+				console.log(answer);
+				var answerCard = new Card ("q", "a", "d");
+				console.log(answerCard.planetCards[cardIndex].answer);
+
+					if(answer.userInput === answerCard.planetCards[cardIndex].answer){
+						console.log("You are correct!");
+						cardIndex++;
+						nextPQuestion();
+						fourPrompts();
+
+					}else{
+						console.log("You're wrong!");
+						cardIndex++;
+						nextPQuestion();
+						fourPrompts();
+					}
+				
+			})
+	};
+
+	//displays next Planet Question
+	this.nextPQuestion = function(){
+		cardIndex++;
+		var nextPCard = new Card("question", "answer", "planet");
+		console.log(nextPCard.planetCards[cardIndex].question);
+		fourPrompts();
+	};
+
+	//displays next Candy Question
+	this.nextCQuestion = function(){
+		var nextCCard = new Card("question", "answer", "candy");
+		console.log(nextCCard.candyCards[cardIndex].question);
+	};
+
+	this.flipToAnswer = function(){
+		var answerPCard = new Card("question", "answer", "planet");
+		console.log(answerPCard.planetCards[cardIndex].answer);
+		nextPQuestion();
+		fourPrompts();
+	};
 
 
-	this.AnswerQuestion = function(){
+	this.exitGame = function(){
+		console.log("Goodbye! Thanks for playing!");
+	};
 
-	}
 
 
-	this.FlipToAnswer = function(){
-
-	}
 };
+
 
 module.exports = CliController;
 

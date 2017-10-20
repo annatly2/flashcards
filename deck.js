@@ -12,12 +12,12 @@ var Deck = function(Card){
 		return this.cards.length;
 	}
 
-	this.runPlanetsDeck = function(){
+	this.initialPlanetsDeck = function(){
 	console.log("You chose the Planets deck!");
 	
-	console.log(Card.question);
+	//console.log(Card.question);
 	//console.log(planetCards)
-	//display questions with for loop
+	//display questions with for loop?
 	
 	}
 
@@ -29,7 +29,5 @@ var Deck = function(Card){
 
 };
 
-
-//organize cards into decks
 
 module.exports = Deck;
