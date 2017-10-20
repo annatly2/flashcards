@@ -1,9 +1,25 @@
 var Deck = require("./deck.js");
 
-var Card = function(question,answer, deck){
+var Card = function(question, answer, deck){
 	this.question = question;
 	this.answer = answer;
 	this.deck = deck;
+
+	this.planetCards = [{
+		question: "What is the smallest planet in the Solar System?",
+		answer: "Mercury",
+	},{
+		question: "What is the brightest planet in the night sky?",
+		answer: "Venus",
+	},{
+		question: "The sixth planet from the Sun features an extensive ring system, what is the name of this planet?",
+		answer: "Saturn",
+	},{
+		question: "What is the largest planet in the Solar System?",
+		answer: "Jupiter"
+	}]
+
+	this.candyCards =[];
 }
 
 

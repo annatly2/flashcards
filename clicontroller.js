@@ -12,7 +12,9 @@ var CliController = function(){
 	}])
 	.then(function(inquirerResponse){
 		if(inquirerResponse.deckchoice === "Planets Deck"){
-			//run planets deck
+			var p1Card = new Card("What planet is nicknamed the ‘Red Planet’?", "Mars", "planet");
+			var p1Deck = new Deck(p1Card)
+			p1Deck.runPlanetsDeck();
 			fourPrompts();
 		}else{
 			//run candy deck
@@ -24,12 +26,41 @@ var CliController = function(){
 	this.fourPrompts = function(){
 		inquirer.prompt([
 			{
+				name: "action",
 				type: "list",
 				message: "What action would you like to take?",
-				choices: ["answer the question", "flip to see the answer", "skip this card to the next", "exit the game"],
-				name: "action"
+				choices: ["Answer the question", "Flip to see the answer", "Skip this card to the next", "Exit the game"]
 			}])
+
+		.then(function(answer){
+			switch(answer.action){
+				case "Answer the question":
+					//allow user to type in an answer
+					break;
+				case "Flip to see the answer":
+					//show answer
+					break;
+				case "Skip this card to the next":
+					//show the next question
+					break;
+				case "Exit the game":
+					//exit and end the game
+					break;
+			}
+		})
 	};
+
+
+
+
+	this.AnswerQuestion = function(){
+
+	}
+
+
+	this.FlipToAnswer = function(){
+
+	}
 };
 
 module.exports = CliController;
