@@ -3,6 +3,7 @@ var Deck = require("./deck.js");
 var Card = require("./card.js");
 
 var cardIndex = 0;
+var currentDeck =[];
 
 //Initiates Command Line Interface Constructor
 var CliController = function(){
@@ -16,11 +17,13 @@ var CliController = function(){
 	.then(function(inquirerResponse){
 		if(inquirerResponse.deckchoice === "Planets Deck"){
 			var firstPCard = new Card("question", "answer", "planet");
+			currentDeck = firstPCard.planetCards;
 			console.log(firstPCard.planetCards[cardIndex].question);
 			fourPrompts();
 
 		}else{
 			var firstCCard = new Card ("question", "answer", "candy");
+			currentDeck = firstCCard.candyCards;
 			console.log(firstCCard.candyCards[cardIndex].question);
 			//run candy deck
 			fourPrompts();
@@ -68,23 +71,19 @@ var CliController = function(){
 				message: "Type your answer.",
 				type: "input"
 			}]).then(function(answer){
-				console.log(answer);
 				var answerCard = new Card ("q", "a", "d");
-				console.log(answerCard.planetCards[cardIndex].answer);
+				console.log(currentDeck[cardIndex].answer);
 
-					if(answer.userInput === answerCard.planetCards[cardIndex].answer){
+					if(answer.userInput === currentDeck[cardIndex].answer){
 						console.log("You are correct!");
-						cardIndex++;
+						console.log("The answer is " + currentDeck[cardIndex].answer);
 						nextPQuestion();
-						fourPrompts();
 
 					}else{
 						console.log("You're wrong!");
-						cardIndex++;
+						console.log("The answer is " + currentDeck[cardIndex].answer);
 						nextPQuestion();
-						fourPrompts();
 					}
-				
 			})
 	};
 
@@ -92,27 +91,38 @@ var CliController = function(){
 	this.nextPQuestion = function(){
 		cardIndex++;
 		var nextPCard = new Card("question", "answer", "planet");
-		console.log(nextPCard.planetCards[cardIndex].question);
+		if(cardIndex >= currentDeck.length){
+			exitGame();
+		}else{
+		console.log(currentDeck[cardIndex].question);
 		fourPrompts();
-	};
+	}
+};
 
 	//displays next Candy Question
 	this.nextCQuestion = function(){
+		cardIndex++;
 		var nextCCard = new Card("question", "answer", "candy");
-		console.log(nextCCard.candyCards[cardIndex].question);
+		if(cardIndex >= currentDeck.length){
+			exitGame();
+		}else{
+			console.log(currentDeck[cardIndex].question);
+			fourPrompts();
+		}
 	};
 
 	this.flipToAnswer = function(){
 		var answerPCard = new Card("question", "answer", "planet");
-		console.log(answerPCard.planetCards[cardIndex].answer);
+		console.log(currentDeck[cardIndex].answer);
 		nextPQuestion();
-		fourPrompts();
+
 	};
 
 
 	this.exitGame = function(){
 		console.log("Goodbye! Thanks for playing!");
 	};
+
 
 
 
